@@ -35,7 +35,7 @@
         return list;
         
     }
-}*/
+}
 class Solution {
     public List<String> commonChars(String[] words) {
         int[] minfreq = new int[26];
@@ -59,5 +59,40 @@ class Solution {
             }
         }
         return ans;
+    }
+}
+*/
+class Solution {
+    public List<String> commonChars(String[] words){
+        String s1=words[0];
+        
+        for(int i=0;i<words.length;i++){
+            char array[]=new char[words[i].length()];
+            String s2="";
+            for(int j=0;j<words[i].length();j++){
+                array[j]=words[i].charAt(j);
+            }
+            for(int j=0;j<s1.length();j++){
+                for(int k=0;k<array.length;k++){
+                    if(array[k]=='1')
+                    continue;
+                    if(s1.charAt(j)==array[k])
+                    {
+                        s2+=Character.toString(array[k]);
+                        array[k]='1';
+                        break;
+                    }
+                }
+            }
+            
+            if(s2.length()<s1.length())
+                s1=s2;
+            
+        }
+        List<String> list=new ArrayList<>();
+        for(int i=0;i<s1.length();i++){
+            list.add(Character.toString(s1.charAt(i)));
+        }
+        return list;
     }
 }
